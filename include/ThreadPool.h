@@ -7,6 +7,7 @@
 #include <thread>
 #include <utility>
 #include <vector>
+#include <atomic>
 
 #include "SafeQueue.h"
 
@@ -39,7 +40,7 @@ private:
     }
   };
 
-  bool m_shutdown;
+  std::atomic<bool> m_shutdown;
   SafeQueue<std::function<void()>> m_queue;
   std::vector<std::thread> m_threads;
   std::mutex m_conditional_mutex;
